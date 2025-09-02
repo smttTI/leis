@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Normativos e Equipamentos</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #0078dc;
+            --primary-hover: #0062b2;
+            --text: #003366;
+            --muted: #555;
+            --row: #f9fbff;
+            --border: #e5e7eb;
+            --badge-green: #16a34a;
+            --badge-red: #dc2626;
+            --badge-yellow: #ca8a04;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #ffffff;
+            color: #111827;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        .accordion {
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            padding: 12px 16px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            margin: 8px 0;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .accordion .arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .accordion[aria-expanded="true"] .arrow {
+            transform: rotate(90deg);
+        }
+
+        .panel {
+            padding: 12px 14px;
+            background-color: #f8fafc;
+            margin: 6px 0 14px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .panel[hidden] {
+            display: none !important;
+        }
+
+        .info-text {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        /* Tabela */
+        .table-wrap {
+            overflow: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead th {
+            background: #f3f4f6;
+            color: #374151;
+            font-weight: 600;
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        tbody td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        tbody tr:nth-child(even) {
+            background: var(--row);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 18px;
+        }
+
+        .ok {
+            background: var(--badge-green);
+        }
+
+        .pendente {
+            background: var(--badge-yellow);
+        }
+
+        .revogado {
+            background: var(--badge-red);
+        }
+
+        .pdf-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .pdf-link i {
+            color: #d32f2f;
+            width: 18px;
+            height: 18px;
+        }
+
+        .pdf-link:hover i {
+            color: #a00000;
+        }
+
+        ul {
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        li a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.2s;
+        }
+
+        li a:hover {
+            background-color: #e8f0fa;
+        }
+
+        .pdf-icon {
+            color: #d32f2f;
+            width: 18px;
+            height: 18px;
+        }
+
+        li a:hover .pdf-icon {
+            color: #a00000;
+        }
+
+        h5 {
+            margin-top: 28px;
+            margin-bottom: 10px;
+            color: #111827;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="info-text">
+        <p>A lista a seguir reúne normas e documentos oficiais expedidos pela <strong>Superintendência Municipal de
+                Transportes e Trânsito de Aracaju (SMTT)</strong>, incluindo leis, portarias e resoluções que
+            regulamentam suas atividades administrativas e operacionais.</p>
+        <p>Esses atos normativos asseguram a transparência, a padronização de procedimentos e o cumprimento das
+            diretrizes institucionais, servindo como referência para gestores, servidores e cidadãos.</p>
+
+    </div>
+
+    <!-- Acordeon 1: Leis e Decretos Municipais -->
+    <button class="accordion" type="button" aria-expanded="false" aria-controls="painel-leis" id="btn-leis">
+        Leis e Decretos Municipais
+        <i data-lucide="chevron-right" class="arrow" aria-hidden="true"></i>
+    </button>
+    <div class="panel" id="painel-leis" role="region" aria-labelledby="btn-leis" hidden>
+        <div class="table-wrap" aria-label="Tabela Leis e Decretos Municipais">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Situação</th>
+                        <th>Arquivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lei 1.234/2023</td>
+                        <td>15/03/2023</td>
+                        <td>Dispõe sobre a organização da fiscalização eletrônica no município.</td>
+                        <td><span class="badge ok">Vigente</span></td>
+                        <td><a class="pdf-link" href="#" target="_blank"><i data-lucide="file-text"></i>PDF</a></td>
+                    </tr>
+                    <tr>
+                        <td>Decreto 567/2024</td>
+                        <td>02/08/2024</td>
+                        <td>Regulamenta procedimentos de implantação e manutenção dos equipamentos.</td>
+                        <td><span class="badge pendente">Pendente</span></td>
+                        <td><a class="pdf-link" href="#" target="_blank"><i data-lucide="file-text"></i>PDF</a></td>
+                    </tr>
+                    <tr>
+                        <td>Lei 1.010/2019</td>
+                        <td>10/11/2019</td>
+                        <td>Institui diretrizes gerais para sinalização e segurança viária.</td>
+                        <td><span class="badge revogado">Revogado</span></td>
+                        <td><a class="pdf-link" href="#" target="_blank"><i data-lucide="file-text"></i>PDF</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Acordeon 2: Resoluções do Conselho ADM -->
+    <button class="accordion" type="button" aria-expanded="false" aria-controls="painel-resolucoes" id="btn-resolucoes">
+        Resoluções do Conselho ADM
+        <i data-lucide="chevron-right" class="arrow" aria-hidden="true"></i>
+    </button>
+    <div class="panel" id="painel-resolucoes" role="region" aria-labelledby="btn-resolucoes" hidden>
+        <div class="table-wrap" aria-label="Tabela Resoluções do Conselho ADM">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Situação</th>
+                        <th>Arquivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Res. 05/2025</td>
+                        <td>20/01/2025</td>
+                        <td>Estabelece critérios para auditoria de contratos de manutenção.</td>
+                        <td><span class="badge ok">Vigente</span></td>
+                        <td><a class="pdf-link" href="#" target="_blank"><i data-lucide="file-text"></i>PDF</a></td>
+                    </tr>
+                    <tr>
+                        <td>Res. 12/2024</td>
+                        <td>05/09/2024</td>
+                        <td>Define parâmetros de qualidade para aferição periódica.</td>
+                        <td><span class="badge ok">Vigente</span></td>
+                        <td><a class="pdf-link" href="#" target="_blank"><i data-lucide="file-text"></i>PDF</a></td>
+                    </tr>
+                    <tr>
+                        <td>Res. 08/2022</td>
+                        <td>30/06/2022</td>
+                        <td>Revoga normativos anteriores relativos a procedimentos obsoletos.</td>
+                        <td><span class="badge revogado">Revogado</span></td>
+                        <td><a class="pdf-link" href="#" target="_blank"><i data-lucide="file-text"></i>PDF</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Acordeon 3: Portarias Normativas -->
+    <button class="accordion" type="button" aria-expanded="false" aria-controls="painel-portarias" id="btn-portarias">
+        Portarias Normativas
+        <i data-lucide="chevron-right" class="arrow" aria-hidden="true"></i>
+    </button>
+    <div class="panel" id="painel-portarias" role="region" aria-labelledby="btn-portarias" hidden>
+        <div class="table-wrap" aria-label="Tabela Portarias Normativas">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Situação</th>
+                        <th>Arquivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Port. 021/2025</td>
+                        <td>12/02/2025</td>
+                        <td>Institui calendário anual de aferição dos equipamentos.</td>
+                        <td><span class="badge ok">Vigente</span></td>
+                        <td><a class="pdf-link" href="#" target="_blank"><i data-lucide="file-text"></i>PDF</a></td>
+                    </tr>
+                    <tr>
+                        <td>Port. 114/2023</td>
+                        <td>18/12/2023</td>
+                        <td>Define fluxo interno para publicação de relatórios técnicos.</td>
+                        <td><span class="badge pendente">Pendente</span></td>
+                        <td><a class="pdf-link" href="#" target="_blank"><i data-lucide="file-text"></i>PDF</a></td>
+                    </tr>
+                    <tr>
+                        <td>Port. 009/2020</td>
+                        <td>07/04/2020</td>
+                        <td>Suspende temporariamente prazos administrativos (COVID-19).</td>
+                        <td><span class="badge revogado">Revogado</span></td>
+                        <td><a class="pdf-link" href="#" target="_blank"><i data-lucide="file-text"></i>PDF</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script>
+        // Ativa os ícones do Lucide
+        lucide.createIcons();
+
+        // Toggle robusto usando atributo 'hidden' + aria-expanded
+        document.querySelectorAll('.accordion').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Evita fechar/abrir se clicar num link dentro do botão (raro, mas por segurança)
+                if (e.target.closest('a')) return;
+
+                const panelId = btn.getAttribute('aria-controls');
+                const panel = document.getElementById(panelId);
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+                btn.setAttribute('aria-expanded', String(!expanded));
+                if (panel) panel.hidden = expanded;
+            });
+        });
+    </script>
+</body>
+
+</html>
