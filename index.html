@@ -258,35 +258,40 @@
         let currentPage = 1;
         const rowsPerPage = 5;
 
-        function renderTable() {
-            const term = searchInput.value.toLowerCase();
-            const tipo = typeFilter.value;
-            const ano = yearFilter.value;
+       function renderTable() {
+  const term = searchInput.value.toLowerCase();
+  const tipo = typeFilter.value;
+  const ano = yearFilter.value;
 
-            const filtered = data.filter(d => {
-                const matchTerm = d.numero.toLowerCase().includes(term) || d.descricao.toLowerCase().includes(term);
-                const matchTipo = tipo ? d.tipo === tipo : true;
-                const matchAno = ano ? d.data.split("/")[2] === ano : true;
-                return matchTerm && matchTipo && matchAno;
-            });
+  const filtered = data.filter(d => {
+    const matchTerm = d.numero.toLowerCase().includes(term) || d.descricao.toLowerCase().includes(term);
+    const matchTipo = tipo ? d.tipo === tipo : true;
+    const matchAno = ano ? d.data.split("/")[2] === ano : true;
+    return matchTerm && matchTipo && matchAno;
+  });
 
-            const start = (currentPage - 1) * rowsPerPage;
-            const pageData = filtered.slice(start, start + rowsPerPage);
+  const start = (currentPage - 1) * rowsPerPage;
+  const pageData = filtered.slice(start, start + rowsPerPage);
 
-            tbody.innerHTML = pageData.map(d => `
-        <tr>
-          <td>${d.numero}</td>
-          <td>${d.data}</td>
-          <td>${d.descricao}</td>
-          <td><span class="badge ${d.situacao}">${d.situacao === "ok" ? "Vigente" : d.situacao === "pendente" ? "Pendente" : "Revogado"}</span></td>
-          <td>${d.tipo}</td>
-          <td><a class="pdf-link" href="${d.arquivo}" target="_blank"><i data-lucide="file-text"></i>PDF</a></td>
-        </tr>
-      `).join("");
+  tbody.innerHTML = pageData.map(d => `
+    <tr>
+      <td>${d.numero}</td>
+      <td>${d.data}</td>
+      <td>${d.descricao}</td>
+      <td>${d.situacao}</td>
+      <td>${d.tipo}</td>
+      <td>
+        <a class="pdf-link" href="${d.arquivo}" target="_blank">
+          <i data-lucide="file-text"></i>PDF
+        </a>
+      </td>
+    </tr>
+  `).join("");
 
-            lucide.createIcons();
-            renderPagination(filtered.length);
-        }
+  lucide.createIcons();
+  renderPagination(filtered.length);
+}
+
 
         function renderPagination(totalItems) {
             const totalPages = Math.ceil(totalItems / rowsPerPage);
@@ -309,4 +314,5 @@
 </body>
 
 </html>
+
 
