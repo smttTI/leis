@@ -280,11 +280,18 @@
   const tipo = typeFilter.value;
   const ano = yearFilter.value;
 
-  const filtered = data.filter(d => {
+  let filtered = data.filter(d => {
     const matchTerm = d.numero.toLowerCase().includes(term) || d.descricao.toLowerCase().includes(term);
     const matchTipo = tipo ? d.tipo === tipo : true;
     const matchAno = ano ? d.data.split("/")[2] === ano : true;
     return matchTerm && matchTipo && matchAno;
+  });
+
+  // >>> ORDENAR DO MAIS NOVO PARA O MAIS ANTIGO <<<
+  filtered.sort((a, b) => {
+      const [diaA, mesA, anoA] = a.data.split("/").map(Number);
+      const [diaB, mesB, anoB] = b.data.split("/").map(Number);
+      return new Date(anoB, mesB - 1, diaB) - new Date(anoA, mesA - 1, diaA);
   });
 
   const start = (currentPage - 1) * rowsPerPage;
@@ -310,6 +317,7 @@
 }
 
 
+
         function renderPagination(totalItems) {
             const totalPages = Math.ceil(totalItems / rowsPerPage);
             pagination.innerHTML = "";
@@ -331,6 +339,7 @@
 </body>
 
 </html>
+
 
 
 
